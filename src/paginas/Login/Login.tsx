@@ -26,14 +26,16 @@ function Login() {
 
 function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
   setUsuarioLogin({
-      ...usuarioLogin,
+      ...usuarioLogin,  //Spread operator 
       [e.target.name]: e.target.value
   })
+  
 }
 
 function login(e: ChangeEvent<HTMLFormElement>) {
   e.preventDefault() //impedir que o formulario recarrega a pagina
   handleLogin(usuarioLogin)
+  
 }
 
   return (
