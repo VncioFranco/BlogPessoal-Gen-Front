@@ -11,29 +11,29 @@ function Navbar() {
     handleLogout()
     alert('Usuário deslogado com sucesso')
     navigate('/login')
-}
+  }
 
-let navbarComponent
+  let navbarComponent
 
-  
+
 
   return (
     <>
-     <div className='w-full bg-indigo-600 text-white flex justify-center py-4'>
-          <div className="container flex justify-between text-lg">
+      <div className='w-full bg-indigo-600 text-white flex justify-center py-4'>
+        <div className="container flex justify-between text-lg">
           <Link to='/home' className='text-2xl font-bold uppercase'>Blog Pessoal</Link>
 
-            <div className='flex gap-4'>
+          <div className='flex gap-4'>
             <Link to='/login' className='hover:underline'>Login</Link>
             <Link to='/home' className='hover:underline'>Home</Link>
-              <div className='hover:underline'>Postagens</div>
-              <Link to='/temas' className='hover:underline'>Temas</Link>
-              <Link to='/cadastroTema' className='hover:underline'>Cadastrar tema</Link>
-              <div className='hover:underline'>Perfil</div>
-              <Link to='' onClick={logout} className='hover:underline'>Sair</Link>
-            </div>
+            <Link to='/postagens' className='hover:underline'>Postagens</Link>
+            <Link to='/temas' className='hover:underline'>Temas</Link>
+            <Link to='/cadastroTema' className='hover:underline'>Cadastrar tema</Link>
+            <div className='hover:underline'>Perfil</div>
+            <Link to='' onClick={logout} className='hover:underline'>Sair</Link>
           </div>
         </div>
+      </div>
     </>
   )
 }
