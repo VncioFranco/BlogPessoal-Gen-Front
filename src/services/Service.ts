@@ -2,7 +2,7 @@ import axios from "axios";
 
 //Conexão Fronto x Back
 const api = axios.create({
-  baseURL: 'https://blogpessoal-nmoo.onrender.com'
+  baseURL: import.meta.env.VITE_API_URL
 })
 
 //Services -> Funções que vão realizar as requisições ao back

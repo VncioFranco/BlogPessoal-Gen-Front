@@ -4,6 +4,7 @@ import { AuthContext } from '../../../contexts/AuthContext';
 import Tema from '../../../models/Tema';
 import Postagem from '../../../models/Postagem';
 import { atualizar, buscar, cadastrar } from '../../../services/Service';
+import { toastAlerta } from '../../../util/ToastAlerta';
 
 
 
@@ -58,7 +59,7 @@ function FormularioPostagem() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado');
+            toastAlerta('Você precisa estar logado' ,'info');
             navigate('/');
         }
     }, [token]);
@@ -103,14 +104,14 @@ function FormularioPostagem() {
                         Authorization: token,
                     },
                 });
-                alert('Postagem atualizada com sucesso');
+                toastAlerta('Postagem atualizada com sucesso','sucesso');
                 retornar();
             } catch (error: any) {
                 if (error.toString().includes('403')) {
-                    alert('O token expirou, favor logar novamente')
+                    toastAlerta('O token expirou, favor logar novamente','info')
                     handleLogout()
                 } else {
-                    alert('Erro ao atualizar a Postagem');
+                    toastAlerta('Erro ao atualizar a Postagem','erro');
                 }
             }
         } else {
@@ -121,14 +122,14 @@ function FormularioPostagem() {
                     },
                 });
 
-                alert('Postagem cadastrada com sucesso');
+                toastAlerta('Postagem cadastrada com sucesso','sucesso');
                 retornar();
             } catch (error: any) {
                 if (error.toString().includes('403')) {
-                    alert('O token expirou, favor logar novamente')
+                    toastAlerta('O token expirou, favor logar novamente','info')
                     handleLogout()
                 } else {
-                    alert('Erro ao cadastrar a Postagem');
+                    toastAlerta('Erro ao cadastrar a Postagem','erro');
                 }
             }
         }
@@ -138,7 +139,7 @@ function FormularioPostagem() {
 
 
     return (
-        <div className="container flex flex-col mx-auto items-center">
+        <div className="bg-indigo-100 container flex flex-col mx-auto items-center">
             <h1 className="text-4xl text-center my-8">{id !== undefined ? 'Editar Postagem' : 'Cadastrar Postagem'}</h1>
 
             <form onSubmit={gerarNovaPostagem} className="flex flex-col w-1/2 gap-4">
@@ -179,7 +180,7 @@ function FormularioPostagem() {
 
                     </select>
                 </div>
-                <button disabled={carregandoTema} type='submit' className='rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800 text-white font-bold w-1/2 mx-auto block py-2'>
+                <button disabled={carregandoTema} type='submit' className='rounded disabled:bg-slate-400 bg-indigo-400 hover:bg-indigo-800 text-white font-bold w-1/2 mx-auto block py-2'>
                     {carregandoTema ? <span>Carregando</span> : id !== undefined ? 'Editar' : 'Cadastrar'}
                 </button>
             </form>
